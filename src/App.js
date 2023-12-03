@@ -58,10 +58,15 @@ const App = () => {
     }
   };
 
-  const handleSelectAll = () => {
-    setSelectAll(!selectAll);
-    const currentPageIds = currentUsers.slice(0, 10).map((user) => user.id);
-    handleRowSelect(currentPageIds);
+
+  const handleSelectAll = (selectAll, pageIds) => {
+    if (selectAll) {
+      // Remove pageIds from selectedRows
+      setSelectedRows((prevSelectedRows) => prevSelectedRows.filter((id) => !pageIds.includes(id)));
+    } else {
+      // Add all pageIds to selectedRows
+      setSelectedRows((prevSelectedRows) => [...new Set([...prevSelectedRows, ...pageIds])]);
+    }
   };
 
   const handleEdit = (userId, editedName, editedEmail, editedMember) => {

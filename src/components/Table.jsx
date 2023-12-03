@@ -65,7 +65,7 @@ const Table = ({
     handleDelete(userId);
     setSelectAll(false);
   };
-  const handlePageSelectAll = () => {
+ const handlePageSelectAll = () => {
     const currentPageIds = currentUsers.map((user) => user.id);
     handleRowSelect(currentPageIds);
   };
@@ -105,15 +105,12 @@ const Table = ({
           {currentUsers.map((user) => (
             <tr key={user.id} className={selectedRows.includes(user.id) ? 'bg-gray-100' : 'bg-white'}>
               <td className="px-4 py-2 whitespace-nowrap">
-              <input
-                type="checkbox"
-                checked={selectAll}
-                onChange={() => {
-                  setSelectAll(!selectAll);
-                  handlePageSelectAll();
-                }}
-                className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
-              />
+                <input
+                  type="checkbox"
+                  checked={selectedRows.includes(user.id)}
+                  onChange={() => handleRowSelect(user.id)}
+                  className="focus:ring-black h-4 w-4 text-black border-gray-300 rounded"
+                />
               </td>
               <td className="px-4 py-2 whitespace-nowrap">
                 {editData.userId === user.id ? (
