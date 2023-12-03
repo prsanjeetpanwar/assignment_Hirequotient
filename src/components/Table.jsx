@@ -65,10 +65,7 @@ const Table = ({
     handleDelete(userId);
     setSelectAll(false);
   };
- const handlePageSelectAll = () => {
-    const currentPageIds = currentUsers.map((user) => user.id);
-    handleRowSelect(currentPageIds);
-  };
+
   return (
     <div className="text-black
      border rounded p-6 drop-shadow-lg
@@ -194,10 +191,11 @@ const Table = ({
         </tbody>
       </table>
       <div className="mt-4">
-        {selectedRows.length > 0 && (
-          <p className="text-sm text-gray-900">{`${selectedRows.length} out of 46 row(s) selected`}</p>
-        )}
-      </div>
+  {selectedRows.length > 0 && (
+    <p className="text-sm text-gray-900">{`${selectedRows.length} out of ${currentUsers.length > 10 ? 10 : currentUsers.length} row(s) selected`}</p>
+  )}
+</div>
+
     </div>
   );
 };
